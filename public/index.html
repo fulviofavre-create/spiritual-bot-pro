@@ -1,156 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Consulenze Spirituali Online</title>
-  <style>
-    :root { --brand:#7d5fff; --bg:#faf8f5; --card:#fff; --muted:#666;}
-    *{box-sizing:border-box}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:var(--bg);margin:0;color:#333}
-    header{padding:2rem 1rem;background:linear-gradient(135deg,#f5e6d3,#faf8f5);border-bottom:1px solid #eadfce}
-    .container{max-width:980px;margin:0 auto;padding:0 1rem}
-    .row{display:flex;gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    .brand{display:flex;align-items:center;gap:.8rem}
-    .brand img{width:44px;height:44px}
-    nav a{margin-left:1rem;color:#333;text-decoration:none}
-    nav a:hover{color:var(--brand)}
-    .hero{padding:3rem 0;text-align:center}
-    h1{margin:.2rem 0 0 0}
-    .card{background:var(--card);border:1px solid #e6e0d8;border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,.04);padding:1rem}
-    #chatbox{border:1px solid #ddd;border-radius:12px;height:420px;overflow:auto;background:#fff;padding:1rem;box-shadow:0 4px 10px rgba(0,0,0,.05)}
-    .message{margin:.5rem 0;padding:.8rem;border-radius:10px;max-width:72%}
-    .user{background:#e0d4fc;margin-left:auto;text-align:right}
-    .bot{background:#fceec9;margin-right:auto}
-    #input-area{display:flex;gap:.5rem;margin-top:1rem}
-    input{flex:1;padding:.8rem;border-radius:8px;border:1px solid #ccc}
-    button{padding:.8rem 1.1rem;border:0;border-radius:8px;background:var(--brand);color:#fff;cursor:pointer}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
-    .price h3{margin:.2rem 0}
-    .price p{color:var(--muted);margin:.2rem 0 .8rem}
-    .price .amount{font-size:1.4rem;font-weight:600}
-    footer{font-size:.85rem;color:#666;text-align:center;padding:2rem 1rem}
-    .legal{margin-top:.6rem}
-    .legal a{color:#333}
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container row">
-      <div class="brand">
-        <img src="logo.svg" alt="logo">
-        <div>
-          <strong>Aura</strong><div style="font-size:.9rem;color:#555">Consulenze Spirituali</div>
-        </div>
-      </div>
-      <nav>
-        <a href="#chat">Chat</a>
-        <a href="#prezzi">Prezzi</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Termini</a>
-      </nav>
-    </div>
-  </header>
-
-  <div class="container">
-    <section class="hero">
-      <h1>🔮 Consulenze Spirituali Online</h1>
-      <p>Cartomanzia · Astrologia · Intuizione</p>
-    </section>
-
-    <section id="chat" class="card" style="margin-bottom:1.2rem;">
-      <h2>🌙 Chat con l’Assistente Spirituale</h2>
-      <div id="chatbox"></div>
-      <div id="input-area">
-        <input id="userInput" placeholder="Scrivi la tua domanda..." />
-        <button id="sendBtn">Invia</button>
-      </div>
-    </section>
-
-    <section id="prezzi" class="card">
-      <h2>💳 Prezzi & Prenotazioni</h2>
-      <div class="grid">
-        <div class="price card">
-          <h3>Lettura via Email</h3>
-          <p>Risposta scritta personalizzata</p>
-          <div class="amount">CHF 29</div>
-          <button onclick="checkout('email')">Acquista</button>
-        </div>
-        <div class="price card">
-          <h3>Sessione 30 minuti</h3>
-          <p>Zoom/Meet con guida spirituale</p>
-          <div class="amount">CHF 39</div>
-          <button onclick="checkout('mini')">Acquista</button>
-        </div>
-        <div class="price card">
-          <h3>Sessione 60 minuti</h3>
-          <p>Approfondimento completo</p>
-          <div class="amount">CHF 69</div>
-          <button onclick="checkout('full')">Acquista</button>
-        </div>
-      </div>
-    </section>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consulenze Spirituali – Debug</title>
+<body style="font-family:system-ui;max-width:820px;margin:2rem auto;padding:0 1rem">
+  <h1>🔮 Consulenze Spirituali (Debug)</h1>
+  <div id="chat" style="border:1px solid #ddd;border-radius:10px;padding:1rem;height:320px;overflow:auto;white-space:pre-wrap"></div>
+  <div style="margin-top:.5rem">
+    <input id="q" placeholder="Scrivi la tua domanda..." style="width:70%;padding:.5rem">
+    <button id="send">Invia</button>
   </div>
+  <p id="error" style="color:#b00020"></p>
 
-  <footer>
-    Nota: servizio di natura <b>spirituale/esoterica</b> e di intrattenimento. Non sostituisce consulenze mediche, psicologiche o legali.
-    <div class="legal">
-      <a href="privacy.html">Privacy</a> · <a href="terms.html">Termini</a>
-    </div>
-  </footer>
+  <h3>🧪 Test di salute</h3>
+  <p>Apri <code>/api/health</code> per vedere se la chiave c'è.</p>
+  <button id="health">Esegui /api/health</button>
+  <pre id="out" style="background:#111;color:#eee;padding:1rem;border-radius:8px;overflow:auto;max-height:220px"></pre>
 
-  <script>
-    const chatbox = document.getElementById("chatbox");
-    const input = document.getElementById("userInput");
-    const sendBtn = document.getElementById("sendBtn");
-
-    function addMessage(text, sender){
-      const div = document.createElement("div");
-      div.className = `message ${sender}`;
-      div.textContent = text;
-      chatbox.appendChild(div);
-      chatbox.scrollTop = chatbox.scrollHeight;
+<script>
+const chat = document.getElementById('chat');
+const error = document.getElementById('error');
+document.getElementById('send').onclick = async () => {
+  error.textContent = "";
+  const q = document.getElementById('q').value.trim();
+  if(!q) return;
+  chat.textContent += "\nTu: " + q;
+  try {
+    const r = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ message: q })
+    });
+    const data = await r.json();
+    if(!r.ok){
+      error.textContent = "Errore API: " + (data.error || r.statusText);
+      chat.textContent += "\nBot: ⚠️ " + (data.error || r.statusText);
+    }else{
+      chat.textContent += "\nBot: " + (data.reply || "⚠️ Vuoto");
     }
-
-    async function sendMessage(){
-      const text = input.value.trim();
-      if(!text) return;
-      addMessage(text, "user");
-      input.value = "";
-      addMessage("✨ Consulto le energie cosmiche...", "bot");
-
-      try{
-        const res = await fetch("/api/chat", {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({ message: text })
-        });
-        const data = await res.json();
-        chatbox.lastChild.remove();
-        addMessage(data.reply || "✨ Silenzio stellare… riprova.", "bot");
-      }catch(e){
-        chatbox.lastChild.remove();
-        addMessage("⚠️ Errore di connessione. Riprova.", "bot");
-      }
-    }
-
-    async function checkout(plan){
-      try{
-        const res = await fetch("/api/create-checkout-session.js", {
-          method: "POST",
-          headers: {"Content-Type":"application/json"},
-          body: JSON.stringify({ plan })
-        });
-        const data = await res.json();
-        if(data.url){ window.location.href = data.url; }
-        else{ alert("Errore durante il checkout."); }
-      }catch(e){
-        alert("Errore di connessione al pagamento.");
-      }
-    }
-
-    sendBtn.addEventListener("click", sendMessage);
-    input.addEventListener("keydown", (e)=>{ if(e.key==="Enter") sendMessage(); });
-  </script>
+  } catch(e){
+    error.textContent = "Errore di rete: " + e.message;
+  }
+};
+document.getElementById('health').onclick = async () => {
+  const out = document.getElementById('out');
+  out.textContent = "Eseguo test...";
+  try{
+    const r = await fetch('/api/health');
+    const data = await r.json();
+    out.textContent = JSON.stringify(data, null, 2);
+  }catch(e){
+    out.textContent = "Errore: " + e.message;
+  }
+}
+</script>
 </body>
 </html>

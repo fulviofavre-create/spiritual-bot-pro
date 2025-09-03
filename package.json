@@ -1,5 +1,5 @@
 {
-  "name": "spiritual-bot-pro",
+  "name": "spiritual-bot-debug2",
   "private": true,
   "scripts": {
     "dev": "vercel dev",
