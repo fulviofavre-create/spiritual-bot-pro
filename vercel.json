@@ -1,11 +1,7 @@
 {
-  "regions": [
-    "fra1"
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/public/$1"
-    }
+  "regions": ["fra1"],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
