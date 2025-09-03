@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#fff5cc"/>
+      <stop offset="100%" stop-color="#f5e6d3"/>
+    </radialGradient>
+  </defs>
+  <circle cx="60" cy="60" r="50" fill="url(#g)" stroke="#d5c3a6" stroke-width="2"/>
+  <path d="M60 15 A45 45 0 1 0 105 60 33 33 0 1 1 60 15z" fill="#7d5fff" opacity="0.2"/>
+  <g fill="#7d5fff">
+    <circle cx="30" cy="30" r="2"/><circle cx="90" cy="26" r="1.8"/>
+    <circle cx="80" cy="90" r="2"/><circle cx="24" cy="78" r="1.6"/>
+  </g>
+  <text x="60" y="65" font-size="16" text-anchor="middle" fill="#7d5fff" font-family="Segoe UI, Arial">Aura</text>
+</svg>
